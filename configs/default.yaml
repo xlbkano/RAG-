@@ -1,0 +1,69 @@
+# RAG 检索服务 —— 默认配置
+# 所有实验配置（configs/exp/*.yaml）都应从这里复制后修改，禁止散落魔法数
+
+milvus:
+  # 本地开发：Milvus Lite 文件（已验证 3.2.2 支持 dense + sparse 双路检索）
+  # 线上/standalone：http://127.0.0.1:19530
+  uri: "data/milvus/rag.db"
+  collection_prefix: "rag_chunks"
+  insert_batch: 500
+
+corpus:
+  dir: "data/corpus"
+  globs: ["**/*.md", "**/*.txt"]
+
+chunking:
+  # 当前生效的切分策略（每个策略一个独立 collection，见 PRD §4）
+  active: "fixed512"
+  # 与策略无关的评测块网格：所有 Recall 都在这个粒度上算（PRD §3 / §12.3）
+  eval_block_tokens: 1024
+  strategies:
+    fixed512:   { size: 512, overlap: 0 }
+    recursive:  { size: 512, overlap: 64 }
+    # 以下 M2 实现
+    semantic:   { size: 512, percentile: 95, max_chars: 1200 }
+    parentchild: { child: 256, parent: 1024, overlap: 32 }
+
+bm25:
+  k1: 1.2
+  b: 0.75
+  stats_path: "data/bm25_stats.json"
+
+embedding:
+  # hash（离线占位，仅跑链路，指标无意义）| bge-small-zh | bge-m3
+  kind: "bge-small-zh"
+  model: "BAAI/bge-small-zh-v1.5"
+  # 必须与模型实际输出维度一致，pipeline 会校验并报错（写错只会在写 Milvus 时炸，很难查）
+  dim: 512
+  batch_size: 32
+  device: "cpu"
+  # 国内直连 huggingface.co 超时，用镜像；海外环境置空即可
+  hf_endpoint: "https://hf-mirror.com"
+  # BGE s2p 检索：只在 query 侧拼指令。bge-m3 不需要，切到 m3 时置空
+  query_instruction: "为这个句子生成表示以用于检索相关文章："
+
+search:
+  default_mode: "hybrid_rrf"   # dense | sparse | hybrid_rrf | hybrid_weighted
+  # 每路召回候选数。从 50 降到 20：实测 recall@5 对 20 以上的召回深度不敏感，
+  # 而重排池深直接决定延迟（CPU 上每候选约 200ms）
+  candidates: 20
+  top_k: 5
+  rrf_k: 60
+  weights: { dense: 1.0, sparse: 1.0 }
+  index:
+    hnsw_m: 16
+    ef_construction: 200
+    ef_search: 128
+
+rerank:
+  # 默认关闭：rerank 是收益项也是延迟项，是否开由评测决定，不写死进默认链路
+  enabled: false
+  kind: "cross_encoder"        # cross_encoder | identity
+  model: "BAAI/bge-reranker-base"
+  device: "cpu"
+  batch_size: 16
+  max_length: 256              # query + doc 合计的子词截断长度（512→256 实测快约 1.7 倍）
+  doc_max_chars: 600           # 送进模型的文档字符上限（超长文本收益递减、注意力开销平方增长）
+  # 参与精排的候选数。这个值要扫：太小 rerank 没得选，太大延迟线性增长
+  top_n: 15
+  hf_endpoint: "https://hf-mirror.com"

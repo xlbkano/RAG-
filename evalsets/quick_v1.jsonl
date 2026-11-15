@@ -1,0 +1,50 @@
+{"qid": "q01", "query": "删除 Pod 时，如果 preStop 回调需要的执行时间超过了默认的宽限期，应该怎么处理？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["b7e6f7bda434:b12"], "gold_docs": ["kubernetes/concepts_workloads_pods_pod_lifecycle.md"]}
+{"qid": "q02", "query": "在 Pod 密度很高的节点上，用 exec 方式实现探针为什么会额外消耗 CPU？", "type": "single_hop", "difficulty": "hard", "gold_blocks": ["098fe04bbef3:b2"], "gold_docs": ["kubernetes/concepts_workloads_pods_probes.md"]}
+{"qid": "q03", "query": "Kubernetes 里负责管理集群服务外部 HTTP 访问的对象是什么？官方现在还推荐用它吗？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["55f4edd5b94e:b0"], "gold_docs": ["kubernetes/concepts_services_networking_ingress.md"]}
+{"qid": "q04", "query": "要把应用配置和容器镜像解耦，并且数据本身不涉及机密，应该用哪个对象？它不能用来做什么？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["55e087bdc75f:b0"], "gold_docs": ["kubernetes/concepts_configuration_configmap.md"]}
+{"qid": "q05", "query": "密码和令牌这类数据放在 Kubernetes 的哪种对象里比较合适？这样做比写进镜像好在哪？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["ad881710d8cc:b0"], "gold_docs": ["kubernetes/concepts_configuration_secret.md"]}
+{"qid": "q06", "query": "想让某些节点只接纳特定的一批 Pod，节点侧和 Pod 侧分别要配置什么？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["bf5bf0754640:b0"], "gold_docs": ["kubernetes/concepts_scheduling_eviction_taint_and_toleration.md"]}
+{"qid": "q07", "query": "希望副本在多个可用区之间均匀分布，让集群能扛住单个可用区故障，应该用 Pod 的哪个字段？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["53d8eccff247:b0"], "gold_docs": ["kubernetes/concepts_scheduling_eviction_topology_spread_constraints.md"]}
+{"qid": "q08", "query": "多个团队共用一个集群时，怎么限制某个命名空间里所有 Pod 加起来能用的 CPU 和内存总量？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["f46bb5874255:b0"], "gold_docs": ["kubernetes/concepts_policy_resource_quotas.md"]}
+{"qid": "q09", "query": "希望命名空间里没写 resources 字段的容器也有默认的 CPU 上下限，该配置什么对象？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["6f5056d846e6:b0"], "gold_docs": ["kubernetes/concepts_policy_limit_range.md"]}
+{"qid": "q10", "query": "访问量上涨时希望自动增加 Pod 副本数，用哪个对象？它和垂直扩缩有什么不同？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["08fb2858445f:b0"], "gold_docs": ["kubernetes/concepts_workloads_autoscaling_horizontal_pod_autoscale.md"]}
+{"qid": "q11", "query": "StatefulSet 的示例里，Pod 之间稳定的网络域名是靠哪个对象提供的？", "type": "single_hop", "difficulty": "hard", "gold_blocks": ["c1078936ea5b:b1"], "gold_docs": ["kubernetes/concepts_workloads_controllers_statefulset.md"]}
+{"qid": "q12", "query": "日志采集进程需要在每个节点上都跑一份，该用哪种控制器？节点增删时它会有哪些动作？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["065d03a221bf:b0"], "gold_docs": ["kubernetes/concepts_workloads_controllers_daemonset.md"]}
+{"qid": "q13", "query": "怎么限制只有特定的一批 Pod 才能连上数据库 Pod 的端口？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["96201c20da88:b0"], "gold_docs": ["kubernetes/concepts_services_networking_network_policies.md"]}
+{"qid": "q14", "query": "集群里要按用户所属角色来分配权限，Kubernetes 采用的是哪种鉴权方式？它怎么被启用？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["7332060ae7a6:b0"], "gold_docs": ["kubernetes/reference_access_authn_authz_rbac.md"]}
+{"qid": "q15", "query": "节点的内存或磁盘快耗尽时，kubelet 会做什么来保护节点？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["3b5ee6295cbd:b0"], "gold_docs": ["kubernetes/concepts_scheduling_eviction_node_pressure_eviction.md"]}
+{"qid": "q16", "query": "kubelet 靠 Linux 的什么机制强制容器的 CPU 和内存限制？新版本相对旧版本有什么改进？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["2fcab75e0a7e:b0"], "gold_docs": ["kubernetes/concepts_architecture_cgroups.md"]}
+{"qid": "q17", "query": "调度器是怎么知道还有哪些 Pod 没被调度的？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["71a7b3a39368:b0"], "gold_docs": ["kubernetes/concepts_scheduling_eviction_kube_scheduler.md"]}
+{"qid": "q18", "query": "高优先级的 Pod 找不到可用节点时会触发什么行为？这可能带来什么安全问题？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["56991344662b:b0"], "gold_docs": ["kubernetes/concepts_scheduling_eviction_pod_priority_preemption.md"]}
+{"qid": "q19", "query": "集群里出现一批一直无法调度的 Pod 时，节点自动扩缩容组件会怎么处理？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["937aa208ae29:b0"], "gold_docs": ["kubernetes/concepts_cluster_administration_node_autoscaling.md"]}
+{"qid": "q20", "query": "Job 创建的 Pod 执行失败了会自动重试吗？任务什么时候算结束？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["0f177cf78ba1:b0"], "gold_docs": ["kubernetes/concepts_workloads_controllers_job.md"]}
+{"qid": "q21", "query": "调度框架的插件是在哪些时机被调用的？", "type": "single_hop", "difficulty": "hard", "gold_blocks": ["1ec63fa151f5:b0"], "gold_docs": ["kubernetes/concepts_scheduling_eviction_scheduling_framework.md"]}
+{"qid": "q22", "query": "容器里为什么可以直接用服务名访问另一个 Service，而不用记住 IP？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["b54361971138:b0"], "gold_docs": ["kubernetes/concepts_services_networking_dns_pod_service.md"]}
+{"qid": "q23", "query": "想把 ConfigMap 里的数据当作配置文件挂载进容器，应该用哪种卷？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["17c204b6872f:b1"], "gold_docs": ["kubernetes/concepts_storage_volumes.md"]}
+{"qid": "q24", "query": "Pod 的 status.phase 字段能说明什么，又有什么局限？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["b7e6f7bda434:b1"], "gold_docs": ["kubernetes/concepts_workloads_pods_pod_lifecycle.md"]}
+{"qid": "q25", "query": "给容器同时写了 requests 和 limits 之后，调度器和 kubelet 分别拿这两个值做什么？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["615f465b7af6:b0"], "gold_docs": ["kubernetes/concepts_configuration_manage_resources_containers.md"]}
+{"qid": "q26", "query": "ReplicaSet 负责保证什么？它和单独使用 Pod 有什么区别？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["b59aab4ad09a:b0"], "gold_docs": ["kubernetes/concepts_workloads_controllers_replicaset.md"]}
+{"qid": "q27", "query": "Service 背后的 Pod 端点信息由哪个 API 对象维护？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["544948d0cafc:b0"], "gold_docs": ["kubernetes/concepts_services_networking_endpoint_slices.md"]}
+{"qid": "q28", "query": "FastAPI 的依赖注入机制是为了解决什么问题？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["fda5be8d7d0a:b0"], "gold_docs": ["fastapi/tutorial_dependencies.md"]}
+{"qid": "q29", "query": "接口返回的字典里有敏感字段不想暴露给客户端，应该怎么声明响应结构？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["7372cd3d72ce:b0"], "gold_docs": ["fastapi/tutorial_response_model.md"]}
+{"qid": "q30", "query": "注册成功后要发确认邮件，但不想让用户等着，用什么机制比较合适？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["dd7165fc7eb5:b0"], "gold_docs": ["fastapi/tutorial_background_tasks.md"]}
+{"qid": "q31", "query": "应用启动时只执行一次的初始化逻辑、以及退出前的清理逻辑，应该写在哪里？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["f557556a8125:b0"], "gold_docs": ["fastapi/advanced_events.md"]}
+{"qid": "q32", "query": "前端跑在 localhost:3000、后端在 8000 端口，浏览器报跨域错误，服务端需要加什么？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["5897ea5e7a28:b0"], "gold_docs": ["fastapi/tutorial_cors.md"]}
+{"qid": "q33", "query": "应用部署在 Nginx 后面，重定向时生成的地址变成了 http 而不是 https，该怎么修正？", "type": "single_hop", "difficulty": "hard", "gold_blocks": ["230dc888abf6:b1"], "gold_docs": ["fastapi/advanced_behind_a_proxy.md"]}
+{"qid": "q34", "query": "FastAPI 里怎么声明一个 WebSocket 端点？需要额外安装什么依赖？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["541ea942678c:b0"], "gold_docs": ["fastapi/advanced_websockets.md"]}
+{"qid": "q35", "query": "想按 OAuth2 的作用域做更细粒度的权限控制，FastAPI 支持这种做法吗？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["d461a2d7fd48:b0"], "gold_docs": ["fastapi/advanced_security_oauth2_scopes.md"]}
+{"qid": "q36", "query": "同一个服务里想放两套互不干扰的接口文档页面，应该用什么机制？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["70d31ab5d3ce:b0"], "gold_docs": ["fastapi/advanced_sub_applications.md"]}
+{"qid": "q37", "query": "想把大模型生成的文本边生成边推给浏览器，该用哪个响应类？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["9b524f3afde0:b0"], "gold_docs": ["fastapi/advanced_stream_data.md"]}
+{"qid": "q38", "query": "在 pytest 里测 FastAPI 接口、不启动真实服务器，该怎么做？需要装什么包？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["e21c5e78fc11:b0"], "gold_docs": ["fastapi/tutorial_testing.md"]}
+{"qid": "q39", "query": "项目文件变多以后，怎么把路由拆分到多个模块里？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["dee93b9f309a:b0"], "gold_docs": ["fastapi/tutorial_bigger_applications.md"]}
+{"qid": "q40", "query": "路径操作里想返回 404 并带上说明文字，应该抛什么、怎么抛？", "type": "single_hop", "difficulty": "easy", "gold_blocks": ["fb4495f0b827:b0"], "gold_docs": ["fastapi/tutorial_handling_errors.md"]}
+{"qid": "q41", "query": "想统计每个请求的处理耗时，代码应该写在应用的哪一层？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["df6e9e180356:b0"], "gold_docs": ["fastapi/tutorial_middleware.md"]}
+{"qid": "q42", "query": "想限制查询参数的长度不超过 50 个字符，还要体现在接口文档里，怎么声明？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["fd40eac0c067:b0"], "gold_docs": ["fastapi/tutorial_query_params_str_validations.md"]}
+{"qid": "q43", "query": "路径参数想限定必须是大于 0 的整数，用哪个函数加校验和元数据？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["08e79a36b717:b0"], "gold_docs": ["fastapi/tutorial_path_params_numeric_validations.md"]}
+{"qid": "q44", "query": "Pod 被删除之后，kubelet 是怎么一步步让容器停下来的？", "type": "single_hop", "difficulty": "medium", "gold_blocks": ["b7e6f7bda434:b10", "b7e6f7bda434:b12"], "gold_docs": ["kubernetes/concepts_workloads_pods_pod_lifecycle.md"]}
+{"qid": "n01", "query": "Redis 的 RDB 和 AOF 两种持久化方式应该怎么选？", "type": "no_answer", "difficulty": "easy", "gold_blocks": []}
+{"qid": "n02", "query": "PostgreSQL 的 MVCC 是怎么实现的？", "type": "no_answer", "difficulty": "easy", "gold_blocks": []}
+{"qid": "n03", "query": "React 里 useEffect 的依赖数组传空数组代表什么？", "type": "no_answer", "difficulty": "easy", "gold_blocks": []}
+{"qid": "n04", "query": "TCP 三次握手为什么需要三次而不是两次？", "type": "no_answer", "difficulty": "easy", "gold_blocks": []}
+{"qid": "n05", "query": "Java 的 G1 垃圾回收器把堆划分成哪些区域？", "type": "no_answer", "difficulty": "easy", "gold_blocks": []}
+{"qid": "n06", "query": "TensorFlow 的 XLA 编译器做了哪些图优化？", "type": "no_answer", "difficulty": "easy", "gold_blocks": []}

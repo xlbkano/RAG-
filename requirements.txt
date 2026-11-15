@@ -1,0 +1,12 @@
+fastapi>=0.110
+uvicorn[standard]>=0.27
+pymilvus>=2.4
+milvus-lite>=2.4
+numpy>=1.26
+pyyaml>=6.0
+jieba>=0.42
+pytest>=8.0
+httpx>=0.27
+
+# 真实语义向量（bge-small-zh-v1.5 / bge-m3 共用这套）
+sentence-transformers>=3.0

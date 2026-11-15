@@ -1,0 +1,96 @@
+{
+  "run_id": "20261115-110909__recursive__hybrid_rrf",
+  "spec": {
+    "strategy": "recursive",
+    "mode": "hybrid_rrf",
+    "rerank": false,
+    "rerank_top_n": 30,
+    "tag": ""
+  },
+  "config_hash": "9bf34d0270dd",
+  "dataset": {
+    "path": "evalsets\\quick_v1.jsonl",
+    "sha1": "82a5314ca5d2"
+  },
+  "config": {
+    "milvus": {
+      "uri": "data/milvus/rag.db",
+      "collection_prefix": "rag_chunks",
+      "insert_batch": 500
+    },
+    "corpus": {
+      "dir": "data/corpus",
+      "globs": [
+        "**/*.md",
+        "**/*.txt"
+      ]
+    },
+    "chunking": {
+      "active": "fixed512",
+      "eval_block_tokens": 1024,
+      "strategies": {
+        "fixed512": {
+          "size": 512,
+          "overlap": 0
+        },
+        "recursive": {
+          "size": 512,
+          "overlap": 64
+        },
+        "semantic": {
+          "size": 512,
+          "percentile": 95,
+          "max_chars": 1200
+        },
+        "parentchild": {
+          "child": 256,
+          "parent": 1024,
+          "overlap": 32
+        }
+      }
+    },
+    "bm25": {
+      "k1": 1.2,
+      "b": 0.75,
+      "stats_path": "data/bm25_stats.json"
+    },
+    "embedding": {
+      "kind": "bge-small-zh",
+      "model": "BAAI/bge-small-zh-v1.5",
+      "dim": 512,
+      "batch_size": 32,
+      "device": "cpu",
+      "hf_endpoint": "https://hf-mirror.com",
+      "query_instruction": "为这个句子生成表示以用于检索相关文章："
+    },
+    "search": {
+      "default_mode": "hybrid_rrf",
+      "candidates": 20,
+      "top_k": 5,
+      "rrf_k": 60,
+      "weights": {
+        "dense": 1.0,
+        "sparse": 1.0
+      },
+      "index": {
+        "hnsw_m": 16,
+        "ef_construction": 200,
+        "ef_search": 128
+      }
+    },
+    "rerank": {
+      "enabled": false,
+      "kind": "cross_encoder",
+      "model": "BAAI/bge-reranker-base",
+      "device": "cpu",
+      "batch_size": 16,
+      "max_length": 256,
+      "doc_max_chars": 600,
+      "top_n": 15,
+      "hf_endpoint": "https://hf-mirror.com"
+    }
+  },
+  "created_at": "20261115-110909",
+  "suite_n": 50,
+  "spec_index": 9
+}

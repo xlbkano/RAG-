@@ -1,0 +1,12 @@
+# 统一换行符处理：仓库里存 LF，Windows 检出为 CRLF，避免无意义的整文件 diff
+* text=auto
+
+*.py   text eol=lf
+*.md   text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+
+# 评测产物里的记录行可能很长，禁止 diff 展开
+results/**/per_query.jsonl -diff
